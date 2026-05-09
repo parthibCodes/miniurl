@@ -2,9 +2,9 @@ import { client } from "../config/redis.js";
 
 export const encachingData = async (shortCode,longUrl) => {
     const redisKey = `url:${shortCode}`;
-    const value = await client.get(shortCode);
+    const value = await client.get(redisKey);
     if(!value){
-        await client.setEX(redisKey,3600,longUrl);
+        await client.setEx(redisKey,3600,longUrl);
         console.log("data is cached");
     }
 }

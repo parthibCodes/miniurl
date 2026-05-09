@@ -11,7 +11,7 @@ export const connectDB = async () =>{
         database:process.env.DB_DATABASE,
     });
     pool.on("connect",()=>{
-        console.log("someone connected to the database");
+        console.log("Connected to the DB successfully");
     });
     pool.on("error",(error)=>{
         console.error("something went wrong during db connection",error);

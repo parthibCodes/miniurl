@@ -1,0 +1,66 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "URL shortner API",
+    "description": "API for URL shortner service",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5000",
+  "basePath": "/api/v0",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/short-url": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/{short_code}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "short_code",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
