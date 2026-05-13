@@ -21,7 +21,7 @@ export const retrieveUrl = async (req,res) =>{
         else{
             const result = await pool.query(`SELECT long_url FROM url WHERE short_code = $1`,[shortCode]);
             if(result.rows.length === 0){
-                throw new apiError(404,"There is no original url corresponding to the short url");
+                throw new apiError(404,"There is no original url corresponding to the short code");
             }
             const original_url = result.rows[0].long_url;
             await encachingData(shortCode,original_url);
